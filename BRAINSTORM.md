@@ -54,6 +54,32 @@ The game is fully command-driven, scalable, and designed for long-term user enga
 
 ---
 
+## Number Formatting System
+
+To ensure readability, all large numerical values (Points, Gems, etc.) will be shortened in output.
+
+| Raw Value     | Displayed As |
+|---------------|--------------|
+| `1,000`       | `1K`         |
+| `100,000`     | `100K`       |
+| `1,000,000`   | `1M`         |
+| `1,000,000,000`| `1B`        |
+| `1e15`        | `1Q`         |
+| `1e50`        | `1e50`       |
+
+- Abbreviate any number ≥ 1000.
+- Use suffixes: K, M, B, T, Qa, Qi, Sx, Sp, Oc, No, Dc, etc.
+- Scientific notation used if value > `1e36`.
+- Stored values remain unshortened in the database.
+- Admin/developer commands will display full values by default.
+
+Applies to:
+- `/balance`, `/stats`, `/top`
+- Inventory displays
+- Shop and prestige messages
+
+---
+
 ## Feature Breakdown
 
 ### Inventory  
@@ -94,7 +120,8 @@ The game is fully command-driven, scalable, and designed for long-term user enga
 - Gems and Items **can** be traded or gifted.  
 - All crates and items cost Gems to buy.  
 - Points serve only as progression score and prestige trigger.  
-- Bot settings, economy, and database are **global**, not guild-specific.
+- Bot settings, economy, and database are **global**, not guild-specific.  
+- Developer commands are prefix-only. User commands are slash-only.
 
 ---
 
@@ -121,12 +148,12 @@ The game is fully command-driven, scalable, and designed for long-term user enga
 - StatsManager  
 - BlacklistManager  
 - EventManager  
-- Logger (Webhook + file)
-- Or else
+- Logger (Webhook + file)  
+- Utils (number formatting, cooldowns, etc.)
 
 ---
 
 ## Final Notes
 
-The bot design supports infinite progression loops, strategic resource management, and social interaction via trading.  
-It’s ready for production-level development.
+The bot is designed for infinite progression, competitive grinding, and strategic resource use.  
+No bloated features. Every system supports retention and replayability.
