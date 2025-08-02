@@ -121,7 +121,8 @@ The game is fully command-driven, scalable, and designed for long-term user enga
 - StatsManager  
 - BlacklistManager  
 - EventManager  
-- Logger (Webhook + file)  
+- Logger (Webhook + file)
+- Or else
 
 ---
 
