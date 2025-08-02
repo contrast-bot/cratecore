@@ -18,11 +18,11 @@ The game is fully command-driven, scalable, and designed for long-term user enga
 | **Gems**          | Premium currency earned by prestiging or special events. Persistent across sessions. Tradable.|
 | **Items**         | Loot obtained from crates. Items have **rarity tiers** affecting drop chance and value.      |
 | **Crates**        | Containers bought with Gems, opened to yield items with rarity-weighted RNG.                 |
+| **Upgrades**      | Permanent effects (e.g., multiplier, luck) bought with Gems in shop. Non-tradable. Capped.   |
 | **Prestige**      | Reset Points, earn Gems, increase leaderboard prestige count.                               |
-| **Upgrades**      | Permanent buffs bought with Gems in the Prestige Shop (e.g., inventory expansion).           |
 | **Stats**         | Track lifetime player data (coins earned, crates opened, trades made, prestiges, etc.)       |
-| **Inventory**     | Split into two categories: Items and Crates.                                                |
-| **Trading/Gifting**| Only Gems and Items can be traded/gifted. Points cannot.                                    |
+| **Inventory**     | Split into three categories: **Items**, **Upgrades**, **Crates**.                            |
+| **Trading/Gifting**| Only Gems and Items can be traded/gifted. Points and Upgrades cannot.                      |
 | **Blacklist**     | Dev-only command to restrict bot access for certain users.                                  |
 | **Developer Commands** | Prefix commands limited to developers (admin actions, manual item/currency grants).       |
 | **User Commands** | Slash commands accessible to all non-blacklisted users.                                    |
@@ -35,6 +35,29 @@ The game is fully command-driven, scalable, and designed for long-term user enga
 |-----------|----------|-------------------|---------------------------------|
 | Points    | No       | Yes               | Earned through gameplay, prestige trigger only |
 | Gems      | Yes      | No                | Buy crates, items, upgrades, trade, gift |
+
+---
+
+## Inventory Structure
+
+Inventory is globally stored and split into:
+
+| Section  | Contents                                                                 |
+|----------|--------------------------------------------------------------------------|
+| Items    | Crate rewards. Used to increase gameplay stats like multiplier, luck.    |
+| Upgrades | Permanent shop-only bonuses (multiplier, luck, etc). Non-tradable. Capped.|
+| Crates   | Openable containers containing random items.                             |
+
+- Items are only obtained through **crates**.
+- Upgrades are only bought using **Gems** from the **Prestige Shop**.
+- Crates are obtained by spending Gems or through special event/reward drops.
+
+### Upgrade System (Summary)
+
+- Purchasable only via Gems
+- Hard capped (e.g., Multiplier Upgrade → Max Level 10)
+- Not tradable
+- Stored separately from items
 
 ---
 
@@ -83,15 +106,22 @@ Applies to:
 ## Feature Breakdown
 
 ### Inventory  
-- Items and crates stored separately.  
-- Users can hold multiple crates and items.
+- Split into three subcategories:
+  - **Items**: Equipables from crates (affect stats)
+  - **Upgrades**: Bought from shop with Gems, persistent, capped
+  - **Crates**: Consumables to obtain items
 
 ### Crate Crafting / Fusion  
 - Combine multiple crates into higher-tier crates (optional enhancement).
 
 ### Prestige & Prestige Shop  
 - Prestiging resets Points but awards Gems and increases prestige count.  
-- Prestige Shop sells permanent upgrades purchasable only by Gems (inventory expansions, gem bonuses, cooldown reductions, luck boosts).
+- Prestige Shop sells permanent upgrades purchasable only by Gems:
+  - Inventory capacity
+  - Multiplier increases
+  - Extra gems per prestige
+  - Shorter cooldowns
+  - Higher crate drop chance
 
 ### Leaderboards  
 - Display top users by various metrics: Points, Gems, Prestiges, Crates opened, Trades made, etc.
@@ -107,21 +137,41 @@ Applies to:
 - Lifetime counters for user actions: total Points earned, Gems earned/spent, crates opened, trades made, prestiges, commands used.
 
 ### Developer Commands (Prefix)  
-- Blacklist users, grant items/currency, test/debug commands.
+- Blacklist users  
+- Grant items, crates, points, or gems  
+- Manual override systems  
+- Configuration reload
 
 ### User Commands (Slash)  
-- Gameplay commands like `/work`, `/opencrate`, `/prestige`, `/trade`, `/stats`.
+- `/work` - earn Points  
+- `/opencrate`  
+- `/buycrate`  
+- `/shop`  
+- `/prestige`  
+- `/stats`  
+- `/inventory`  
+- `/trade`  
+- `/gift`  
+- `/balance`  
+- `/top`  
+- More TBA
 
 ---
 
 ## Constraints & Rules
 
-- Points **cannot** be traded or gifted.  
-- Gems and Items **can** be traded or gifted.  
-- All crates and items cost Gems to buy.  
-- Points serve only as progression score and prestige trigger.  
-- Bot settings, economy, and database are **global**, not guild-specific.  
-- Developer commands are prefix-only. User commands are slash-only.
+| Action / Feature         | Allowed | Notes                                                   |
+|--------------------------|---------|---------------------------------------------------------|
+| Points Trading           | ❌      | Points are non-tradable and reset on prestige           |
+| Gems Trading             | ✅      | Gems can be traded or gifted to other users             |
+| Item Trading             | ✅      | Items can be traded or gifted between users             |
+| Upgrade Trading          | ❌      | Upgrades are locked to user and non-tradable            |
+| Shop Purchases           | ✅      | Only Gems used to buy crates and upgrades               |
+| Crates from Shop         | ✅      | All crates are Gem-purchasable or event-earned only     |
+
+- Bot settings, economy, and database are **global**, not per-guild.  
+- Developer commands are **prefix-only**.  
+- User commands are **slash-only**.
 
 ---
 
@@ -131,29 +181,31 @@ Applies to:
 - Flex Titles: Unlockable user tags for status display.  
 - Item Skins: Cosmetic-only item variants.  
 - Booster system: Temporary buffs purchasable with Gems.  
-- Referral system: Gems awarded for bringing new users (requires abuse control).
+- Referral system: Gems awarded for bringing new users (requires abuse control).  
+- Limited Edition Crates/Items per Event  
 
 ---
 
 ## Modular Development Plan
 
-- CommandHandler  
-- Database (SQLite)  
-- UserManager  
-- InventoryManager  
-- CrateManager  
-- PrestigeManager  
-- UpgradeManager  
-- TradeManager  
-- StatsManager  
-- BlacklistManager  
-- EventManager  
-- Logger (Webhook + file)  
-- Utils (number formatting, cooldowns, etc.)
+- `CommandHandler`  
+- `Database (SQLite)`  
+- `UserManager`  
+- `InventoryManager`  
+- `CrateManager`  
+- `PrestigeManager`  
+- `UpgradeManager`  
+- `TradeManager`  
+- `StatsManager`  
+- `BlacklistManager`  
+- `EventManager`  
+- `Logger` (Webhook + file)  
+- `Utils` (number formatting, cooldowns, rarity weight calc, etc.)
 
 ---
 
 ## Final Notes
 
 The bot is designed for infinite progression, competitive grinding, and strategic resource use.  
-No bloated features. Every system supports retention and replayability.
+No bloated features. Every system supports retention and replayability.  
+Core is stable. Development can begin.
