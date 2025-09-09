@@ -174,12 +174,12 @@ Applies to:
 
 | Action / Feature | Allowed | Notes                                               |
 | ---------------- | ------- | --------------------------------------------------- |
-| Points Trading   | ❌       | Points are non-tradable and reset on prestige       |
-| Gems Trading     | ✅       | Gems can be traded or gifted to other users         |
-| Item Trading     | ✅       | Items can be traded or gifted between users         |
-| Upgrade Trading  | ❌       | Upgrades are locked to user and non-tradable        |
-| Shop Purchases   | ✅       | Only Gems used to buy crates and upgrades           |
-| Crates from Shop | ✅       | All crates are Gem-purchasable or event-earned only |
+| Points Trading   | X       | Points are non-tradable and reset on prestige       |
+| Gems Trading     | ✓       | Gems can be traded or gifted to other users         |
+| Item Trading     | ✓       | Items can be traded or gifted between users         |
+| Upgrade Trading  | X       | Upgrades are locked to user and non-tradable        |
+| Shop Purchases   | ✓       | Only Gems used to buy crates and upgrades           |
+| Crates from Shop | ✓       | All crates are Gem-purchasable or event-earned only |
 
 * Bot settings, economy, and database are **global**, not per-guild.
 * Developer commands are **prefix-only**.
