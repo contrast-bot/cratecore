@@ -12,21 +12,21 @@ The game is fully command-driven, scalable, and designed for long-term user enga
 
 ## Core Concepts
 
-| Concept                | Description                                                                                          |
-| ---------------------- | ---------------------------------------------------------------------------------------------------- |
-| **Points**             | Temporary currency earned by gameplay (e.g., `/work`, `/daily`). Resets on prestige. Non-tradable.   |
+| Concept                | Description                                                                                              |
+| ---------------------- | -------------------------------------------------------------------------------------------------------- |
+| **Points**             | Temporary currency earned by gameplay (e.g., `/work`, `/daily`). Resets on prestige. Non-tradable.       |
 | **Gems**               | Premium currency earned by prestiging, daily rewards, achievements, or events. Persistent. Non-tradable. |
-| **Items**              | Loot obtained from crates. Items have **rarity tiers** affecting drop chance and value.              |
-| **Crates**             | Containers bought with Gems, opened to yield items with rarity-weighted RNG.                         |
-| **Upgrades**           | Permanent effects (e.g., multiplier, luck) bought with Gems in shop. Non-tradable. Capped.           |
-| **Prestige**           | Reset Points (keep 5% as cushion), earn Gems based on Points total, increase prestige count.         |
-| **Stats**              | Track lifetime player data (coins earned, crates opened, prestiges, etc.)               |
-| **Inventory**          | Split into three categories: **Items**, **Upgrades**, **Crates**. Hard capacity limits apply.        |
-| **Gifting**    | Only Gems and Items can be gifted. Points and Upgrades cannot.                                |
-| **Blacklist**          | Dev-only command to restrict bot access for certain users.                                           |
-| **Developer Commands** | Prefix commands limited to developers (admin actions, manual item/currency grants).                  |
-| **User Commands**      | Slash commands accessible to all non-blacklisted users.                                              |
-| **Events**             | Limited-time crates available in shop. Crates/items persist after event, marked with event tag.      |
+| **Items**              | Loot obtained from crates. Items have **rarity tiers** affecting drop chance and value.                  |
+| **Crates**             | Containers bought with Gems, opened to yield items with rarity-weighted RNG.                             |
+| **Upgrades**           | Permanent effects (e.g., multiplier, luck) bought with Gems in shop. Non-tradable. Capped.               |
+| **Prestige**           | Reset Points (keep 5% as cushion), earn Gems based on Points total, increase prestige count.             |
+| **Stats**              | Track lifetime player data (coins earned, crates opened, prestiges, etc.)                                |
+| **Inventory**          | Split into three categories: **Items**, **Upgrades**, **Crates**. Hard capacity limits apply.            |
+| **Gifting**            | Only Gems and Items can be gifted. Points and Upgrades cannot.                                           |
+| **Blacklist**          | Dev-only command to restrict bot access for certain users.                                               |
+| **Developer Commands** | Prefix commands limited to developers (admin actions, manual item/currency grants).                      |
+| **User Commands**      | Slash commands accessible to all non-blacklisted users.                                                  |
+| **Events**             | Limited-time crates available in shop. Crates/items persist after event, marked with event tag.          |
 
 <br>
 
@@ -35,7 +35,7 @@ The game is fully command-driven, scalable, and designed for long-term user enga
 | Currency | Tradable | Reset on Prestige | Use Case                                       |
 | -------- | -------- | ----------------- | ---------------------------------------------- |
 | Points   | No       | Yes (keeps 5%)    | Earned through gameplay, prestige trigger only |
-| Gems     | No      | No                | Buy crates, items, upgrades, gift       |
+| Gems     | No       | No                | Buy crates, items, upgrades, gift              |
 
 ### Gem Sources
 
@@ -90,10 +90,10 @@ Every 5 prestiges unlocks a bonus:
 
 Inventory is globally stored and split into:
 
-| Section  | Contents                                                                   | Capacity Limit          |
-| -------- | -------------------------------------------------------------------------- | ----------------------- |
+| Section  | Contents                                                                   | Capacity Limit           |
+| -------- | -------------------------------------------------------------------------- | ------------------------ |
 | Items    | Crate rewards. Used to increase gameplay stats like multiplier, luck.      | 500 (upgradable in shop) |
-| Upgrades | Permanent shop-only bonuses (multiplier, luck, etc). Non-tradable. Capped. | 50 (fixed)              |
+| Upgrades | Permanent shop-only bonuses (multiplier, luck, etc). Non-tradable. Capped. | 50 (fixed)               |
 | Crates   | Openable containers containing random items.                               | 100 (upgradable in shop) |
 
 - Items are only obtained through **crates** (or gifting).
@@ -152,21 +152,21 @@ Sold in Prestige Shop:
 
 To ensure readability, all large numerical values (Points, Gems, etc.) will be shortened in output.
 
-| Raw Value       | Displayed As |
-| --------------- | ------------ |
-| `1,000`         | `1K`         |
-| `100,000`       | `100K`       |
-| `1,000,000`     | `1M`         |
-| `1,000,000,000` | `1B`         |
-| `1e12`          | `1T`         |
-| `1e15`          | `1Qa`        |
-| `1e18`          | `1Qi`        |
-| `1e21`          | `1Sx`        |
-| `1e24`          | `1Sp`        |
-| `1e27`          | `1Oc`        |
-| `1e30`          | `1No`        |
-| `1e33`          | `1Dc`        |
-| `1e36`+         | `999Qa+` (cap display, show "MAX" badge) |
+| Raw Value       | Displayed As                              |
+| --------------- | ----------------------------------------- |
+| `1,000`         | `1K`                                      |
+| `100,000`       | `100K`                                    |
+| `1,000,000`     | `1M`                                      |
+| `1,000,000,000` | `1B`                                      |
+| `1e12`          | `1T`                                      |
+| `1e15`          | `1Qa`                                     |
+| `1e18`          | `1Qi`                                     |
+| `1e21`          | `1Sx`                                     |
+| `1e24`          | `1Sp`                                     |
+| `1e27`          | `1Oc`                                     |
+| `1e30`          | `1No`                                     |
+| `1e33`          | `1Dc`                                     |
+| `1e36`+         | `999Qa+` (cap display, show "MAX" badge)  |
 
 - Abbreviate any number ≥ 1000
 - Use suffixes: K, M, B, T, Qa, Qi, Sx, Sp, Oc, No, Dc
